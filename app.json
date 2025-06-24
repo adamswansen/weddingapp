@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "WeddingExpoDemo",
-    "slug": "WeddingExpoDemo",
+    "name": "Adam & Courtney Wedding",
+    "slug": "adam-courtney-wedding",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,20 +10,61 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#87ceeb"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.adamcourtney.wedding2024",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app needs access to camera to let wedding guests take photos to share with Adam & Courtney.",
+        "NSPhotoLibraryUsageDescription": "This app needs access to photo library to let wedding guests select photos to share with Adam & Courtney.",
+        "NSMicrophoneUsageDescription": "This app may need microphone access for video recording features."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#87ceeb"
       },
-      "edgeToEdgeEnabled": true
+      "package": "com.adamcourtney.wedding2024",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-notifications",
+      "expo-secure-store",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Adam & Courtney Wedding app to access your photos to share wedding memories.",
+          "cameraPermission": "Allow Adam & Courtney Wedding app to access your camera to capture wedding memories."
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow Adam & Courtney Wedding app to access your photo library to save wedding memories.",
+          "savePhotosPermission": "Allow Adam & Courtney Wedding app to save wedding photos to your device."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0441cb14-b15c-4c25-8e9b-548bb8c527b5"
+      }
     }
   }
 }
