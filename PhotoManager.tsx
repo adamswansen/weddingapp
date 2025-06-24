@@ -14,6 +14,8 @@ import * as MediaLibrary from 'expo-media-library';
 import * as FileSystem from 'expo-file-system';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { generateUUID } from './utils';
+import { storage } from './firebaseConfig';
+import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
 
 interface Photo {
   id: string;
@@ -25,6 +27,14 @@ interface Photo {
 
 interface PhotoManagerProps {
   onPhotoAdded?: (photo: Photo) => void;
+}
+
+export interface CloudPhoto {
+  id: string;
+  downloadURL: string;
+  contributorName: string;
+  timestamp: string;
+  fileName: string;
 }
 
 export default function PhotoManager({ onPhotoAdded }: PhotoManagerProps) {
@@ -184,6 +194,109 @@ export default function PhotoManager({ onPhotoAdded }: PhotoManagerProps) {
         { text: 'Cancel', style: 'cancel' },
       ]
     );
+  };
+
+  // Upload photo to Firebase Storage
+  const uploadPhotoToCloud = async (
+    imageUri: string, 
+    contributorName: string
+  ): Promise<CloudPhoto | null> => {
+    try {
+      // Create unique filename
+      const timestamp = new Date().toISOString();
+      const fileName = `wedding-photos/${timestamp}-${contributorName.replace(/\s+/g, '-')}.jpg`;
+      
+      // Convert image URI to blob
+      const response = await fetch(imageUri);
+      const blob = await response.blob();
+      
+      // Create storage reference
+      const storageRef = ref(storage, fileName);
+      
+      // Upload the blob
+      const snapshot = await uploadBytes(storageRef, blob);
+      
+      // Get download URL
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      
+      const cloudPhoto: CloudPhoto = {
+        id: `${Date.now()}-${Math.random()}`,
+        downloadURL,
+        contributorName,
+        timestamp: new Date().toLocaleString(),
+        fileName: snapshot.ref.name
+      };
+      
+      return cloudPhoto;
+      
+    } catch (error) {
+      console.error('Error uploading photo:', error);
+      Alert.alert(
+        'Upload Failed', 
+        'Could not upload photo to cloud storage. It will be saved locally instead.'
+      );
+      return null;
+    }
+  };
+
+  // Download all photos from Firebase Storage
+  const getAllPhotosFromCloud = async (): Promise<CloudPhoto[]> => {
+    try {
+      const photosRef = ref(storage, 'wedding-photos/');
+      const result = await listAll(photosRef);
+      
+      const photos: CloudPhoto[] = [];
+      
+      for (const itemRef of result.items) {
+        try {
+          const downloadURL = await getDownloadURL(itemRef);
+          
+          // Extract metadata from filename
+          const fileName = itemRef.name;
+          const parts = fileName.split('-');
+          
+          let contributorName = 'Unknown Guest';
+          let timestamp = 'Unknown time';
+          
+          if (parts.length >= 3) {
+            // Remove file extension and reconstruct name
+            const namePart = parts.slice(1, -1).join('-').replace('.jpg', '');
+            contributorName = namePart.replace(/-/g, ' ');
+            timestamp = parts[0];
+          }
+          
+          photos.push({
+            id: fileName,
+            downloadURL,
+            contributorName,
+            timestamp: new Date(timestamp).toLocaleString(),
+            fileName
+          });
+          
+        } catch (itemError) {
+          console.warn('Error processing photo:', itemError);
+        }
+      }
+      
+      // Sort by timestamp (newest first)
+      return photos.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      
+    } catch (error) {
+      console.error('Error fetching photos from cloud:', error);
+      return [];
+    }
+  };
+
+  // Get photos count for stats
+  const getCloudPhotosCount = async (): Promise<number> => {
+    try {
+      const photosRef = ref(storage, 'wedding-photos/');
+      const result = await listAll(photosRef);
+      return result.items.length;
+    } catch (error) {
+      console.error('Error getting photos count:', error);
+      return 0;
+    }
   };
 
   return (

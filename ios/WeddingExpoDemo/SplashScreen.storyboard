@@ -17,8 +17,29 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView id="EXPO-SplashScreen" userLabel="SplashScreenLogo" image="SplashScreenLogo" contentMode="scaleAspectFit" clipsSubviews="true" userInteractionEnabled="false" translatesAutoresizingMaskIntoConstraints="false">
-                                <rect key="frame" x="0" y="0" width="414" height="736"/>
+                                <rect key="frame" x="0" y="0" width="393" height="852"/>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adam and Courtney's Wedding" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="wedding-title">
+                                <rect key="frame" x="20" y="200" width="353" height="80"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.8" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blue Chair Bay Beach" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="location-subtitle">
+                                <rect key="frame" x="20" y="280" width="353" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.9" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.6" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by White Wine and Craft Beer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="powered-by-label">
+                                <rect key="frame" x="20" y="780" width="353" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.8" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.6" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rmq-lb-GrQ"/>
                         <constraints>
@@ -26,6 +47,18 @@
                             <constraint firstItem="EXPO-SplashScreen" firstAttribute="leading" secondItem="EXPO-ContainerView" secondAttribute="leading" id="61d16215e44b98e39d0a2c74fdbfaaa22601b12c"/>
                             <constraint firstItem="EXPO-SplashScreen" firstAttribute="trailing" secondItem="EXPO-ContainerView" secondAttribute="trailing" id="f934da460e9ab5acae3ad9987d5b676a108796c1"/>
                             <constraint firstItem="EXPO-SplashScreen" firstAttribute="bottom" secondItem="EXPO-ContainerView" secondAttribute="bottom" id="d6a0be88096b36fb132659aa90203d39139deda9"/>
+                            <constraint firstItem="wedding-title" firstAttribute="leading" secondItem="EXPO-ContainerView" secondAttribute="leading" constant="20" id="wedding-title-leading"/>
+                            <constraint firstItem="wedding-title" firstAttribute="trailing" secondItem="EXPO-ContainerView" secondAttribute="trailing" constant="-20" id="wedding-title-trailing"/>
+                            <constraint firstItem="wedding-title" firstAttribute="top" secondItem="EXPO-ContainerView" secondAttribute="top" constant="200" id="wedding-title-top"/>
+                            <constraint firstItem="wedding-title" firstAttribute="height" constant="80" id="wedding-title-height"/>
+                            <constraint firstItem="location-subtitle" firstAttribute="leading" secondItem="EXPO-ContainerView" secondAttribute="leading" constant="20" id="location-subtitle-leading"/>
+                            <constraint firstItem="location-subtitle" firstAttribute="trailing" secondItem="EXPO-ContainerView" secondAttribute="trailing" constant="-20" id="location-subtitle-trailing"/>
+                            <constraint firstItem="location-subtitle" firstAttribute="top" secondItem="wedding-title" secondAttribute="bottom" constant="0" id="location-subtitle-top"/>
+                            <constraint firstItem="location-subtitle" firstAttribute="height" constant="30" id="location-subtitle-height"/>
+                            <constraint firstItem="powered-by-label" firstAttribute="leading" secondItem="EXPO-ContainerView" secondAttribute="leading" constant="20" id="powered-by-leading"/>
+                            <constraint firstItem="powered-by-label" firstAttribute="trailing" secondItem="EXPO-ContainerView" secondAttribute="trailing" constant="-20" id="powered-by-trailing"/>
+                            <constraint firstItem="powered-by-label" firstAttribute="bottom" secondItem="EXPO-ContainerView" secondAttribute="bottom" constant="-42" id="powered-by-bottom"/>
+                            <constraint firstItem="powered-by-label" firstAttribute="height" constant="30" id="powered-by-height"/>
                         </constraints>
                         <color key="backgroundColor" name="SplashScreenBackground"/>
                     </view>
@@ -36,9 +69,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SplashScreenLogo" width="414" height="736"/>
+        <image name="SplashScreenLogo" width="393" height="852"/>
         <namedColor name="SplashScreenBackground">
-            <color alpha="1.000" blue="1.00000000000000" green="1.00000000000000" red="1.00000000000000" customColorSpace="sRGB" colorSpace="custom"/>
+            <color alpha="1.000" blue="0.92549019607843142" green="0.92549019607843142" red="0.52941176470588236" customColorSpace="sRGB" colorSpace="custom"/>
         </namedColor>
     </resources>
 </document>

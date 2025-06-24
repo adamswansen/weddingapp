@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quick Firebase Test</title>
+</head>
+<body>
+    <h1>🔥 Firebase Storage Quick Test</h1>
+    <button onclick="testConnection()">Test Firebase Connection</button>
+    <div id="result"></div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+        import { getStorage, ref, listAll } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXLXptYFeDKiOPXtl39lIK-95ohnVnNnk",
+            authDomain: "weddingapp-b01db.firebaseapp.com",
+            projectId: "weddingapp-b01db",
+            storageBucket: "weddingapp-b01db.firebasestorage.app",
+            messagingSenderId: "494971421990",
+            appId: "1:494971421990:web:898824ee0e95ba89bd2de7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+
+        window.testConnection = async function() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                console.log('🔥 Testing Firebase Storage...');
+                const photosRef = ref(storage, 'wedding-photos/');
+                
+                // Set a 10 second timeout
+                const promise = listAll(photosRef);
+                const timeout = new Promise((_, reject) => 
+                    setTimeout(() => reject(new Error('Timeout after 10 seconds')), 10000)
+                );
+                
+                const result = await Promise.race([promise, timeout]);
+                
+                resultDiv.innerHTML = `
+                    <h2>✅ Success!</h2>
+                    <p>Found ${result.items.length} photos</p>
+                    <p>Firebase Storage is working!</p>
+                `;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `
+                    <h2>❌ Error</h2>
+                    <p><strong>Message:</strong> ${error.message}</p>
+                    <p><strong>Code:</strong> ${error.code || 'Unknown'}</p>
+                    ${error.code === 'storage/unauthorized' ? 
+                        '<p><strong>Fix:</strong> Update Firebase Storage Rules to allow read/write access</p>' : 
+                        '<p>Check Firebase project setup and Storage configuration</p>'
+                    }
+                `;
+            }
+        };
+    </script>
+</body>
+</html> 

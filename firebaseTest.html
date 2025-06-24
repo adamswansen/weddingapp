@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase Storage Test</title>
+    <script type="module">
+        // Import Firebase
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+        import { getStorage, ref, listAll } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js';
+
+        // Your Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXLXptYFeDKiOPXtl39lIK-95ohnVnNnk",
+            authDomain: "weddingapp-b01db.firebaseapp.com",
+            projectId: "weddingapp-b01db",
+            storageBucket: "weddingapp-b01db.firebasestorage.app",
+            messagingSenderId: "494971421990",
+            appId: "1:494971421990:web:898824ee0e95ba89bd2de7"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+
+        // Test Storage Connection
+        async function testFirebaseStorage() {
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                resultDiv.innerHTML = '<p>🔥 Testing Firebase Storage...</p>';
+                
+                // Try to list photos
+                const photosRef = ref(storage, 'wedding-photos/');
+                const result = await listAll(photosRef);
+                
+                resultDiv.innerHTML = `
+                    <h2>✅ Firebase Storage is Working!</h2>
+                    <p>📁 Found ${result.items.length} photos in storage</p>
+                    <p>🎯 Ready for photo uploads!</p>
+                    <p><strong>Storage Bucket:</strong> ${storage.app.options.storageBucket}</p>
+                `;
+                
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <h2>❌ Firebase Storage Error</h2>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p><strong>Code:</strong> ${error.code || 'Unknown'}</p>
+                    <p>Check your Firebase Storage rules and ensure the project is set up correctly.</p>
+                `;
+            }
+        }
+
+        // Run test when page loads
+        window.addEventListener('load', testFirebaseStorage);
+    </script>
+</head>
+<body>
+    <h1>🔥 Firebase Storage Test</h1>
+    <div id="result">
+        <p>Loading...</p>
+    </div>
+</body>
+</html> 
