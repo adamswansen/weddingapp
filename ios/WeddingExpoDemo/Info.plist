@@ -27,12 +27,12 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.anonymous.WeddingExpoDemo</string>
+          <string>com.adamswansen.weddingweekend</string>
         </array>
       </dict>
     </array>
     <key>CFBundleVersion</key>
-    <string>5</string>
+              <string>10</string>
     <key>LSMinimumSystemVersion</key>
     <string>12.0</string>
     <key>LSRequiresIPhoneOS</key>

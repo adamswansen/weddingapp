@@ -1,37 +1,37 @@
 {
   "expo": {
-    "name": "Adam & Courtney Wedding",
+    "name": "We Did It Weekend",
     "slug": "adam-courtney-wedding",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/app-icon.jpeg",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/splash-image.jpeg",
       "resizeMode": "contain",
-      "backgroundColor": "#87ceeb"
+      "backgroundColor": "#f2ebdd"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.adamcourtney.wedding2024",
-      "buildNumber": "6",
+      "bundleIdentifier": "com.adamswansen.weddingweekend",
+      "buildNumber": "10",
       "infoPlist": {
-        "NSCameraUsageDescription": "This app needs access to camera to let wedding guests take photos to share with Adam & Courtney.",
-        "NSPhotoLibraryUsageDescription": "This app needs access to photo library to let wedding guests select photos to share with Adam & Courtney.",
+        "NSCameraUsageDescription": "We Did It Weekend app needs access to camera to let wedding guests take photos to share with Adam & Courtney.",
+        "NSPhotoLibraryUsageDescription": "We Did It Weekend app needs access to photo library to let wedding guests select photos to share with Adam & Courtney.",
         "NSMicrophoneUsageDescription": "This app may need microphone access for video recording features."
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#87ceeb"
+        "foregroundImage": "./assets/app-icon.jpeg",
+        "backgroundColor": "#f2ebdd"
       },
-      "package": "com.adamcourtney.wedding2024",
-      "versionCode": 2,
+      "package": "com.adamswansen.weddingweekend",
+      "versionCode": 3,
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.READ_EXTERNAL_STORAGE",
@@ -49,15 +49,15 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Allow Adam & Courtney Wedding app to access your photos to share wedding memories.",
-          "cameraPermission": "Allow Adam & Courtney Wedding app to access your camera to capture wedding memories."
+          "photosPermission": "Allow We Did It Weekend app to access your photos to share wedding memories.",
+          "cameraPermission": "Allow We Did It Weekend app to access your camera to capture wedding memories."
         }
       ],
       [
         "expo-media-library",
         {
-          "photosPermission": "Allow Adam & Courtney Wedding app to access your photo library to save wedding memories.",
-          "savePhotosPermission": "Allow Adam & Courtney Wedding app to save wedding photos to your device."
+          "photosPermission": "Allow We Did It Weekend app to access your photo library to save wedding memories.",
+          "savePhotosPermission": "Allow We Did It Weekend app to save wedding photos to your device."
         }
       ]
     ],
