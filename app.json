@@ -18,7 +18,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.adamswansen.weddingweekend",
-      "buildNumber": "10",
+
       "infoPlist": {
         "NSCameraUsageDescription": "We Did It Weekend app needs access to camera to let wedding guests take photos to share with Adam & Courtney.",
         "NSPhotoLibraryUsageDescription": "We Did It Weekend app needs access to photo library to let wedding guests select photos to share with Adam & Courtney.",

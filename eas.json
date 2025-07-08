@@ -20,7 +20,8 @@
     "production": {
       "ios": {
         "resourceClass": "m-medium",
-        "image": "latest"
+        "image": "latest",
+        "autoIncrement": true
       }
     }
   },
