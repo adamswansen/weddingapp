@@ -1,9 +1,13 @@
-import { storage } from './firebaseConfig';
-import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
+// import { storage } from './firebaseConfig';
+// import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
 import { Alert } from 'react-native';
 
-// Upload photo to Firebase Storage
+// Upload photo to Firebase Storage - temporarily disabled for build
 export const uploadPhotoToCloud = async (imageUri, contributorName) => {
+  console.log('Firebase Storage temporarily disabled for build');
+  return null;
+  
+  /*
   try {
     // Create unique filename
     const timestamp = new Date().toISOString();
@@ -36,10 +40,15 @@ export const uploadPhotoToCloud = async (imageUri, contributorName) => {
     console.error('Error uploading photo:', error);
     return null;
   }
+  */
 };
 
-// Download all photos from Firebase Storage
+// Download all photos from Firebase Storage - temporarily disabled for build
 export const getAllPhotosFromCloud = async () => {
+  console.log('Firebase Storage temporarily disabled for build');
+  return [];
+  
+  /*
   try {
     const photosRef = ref(storage, 'wedding-photos/');
     const result = await listAll(photosRef);
@@ -84,10 +93,15 @@ export const getAllPhotosFromCloud = async () => {
     console.error('Error fetching photos from cloud:', error);
     return [];
   }
+  */
 };
 
-// Get photos count for stats
+// Get photos count for stats - temporarily disabled for build
 export const getCloudPhotosCount = async () => {
+  console.log('Firebase Storage temporarily disabled for build');
+  return 0;
+  
+  /*
   try {
     const photosRef = ref(storage, 'wedding-photos/');
     const result = await listAll(photosRef);
@@ -96,4 +110,5 @@ export const getCloudPhotosCount = async () => {
     console.error('Error getting photos count:', error);
     return 0;
   }
+  */
 }; 

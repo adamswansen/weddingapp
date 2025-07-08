@@ -1,16 +1,22 @@
-// Simple Firebase Test - Run this to validate Firebase setup
-import { storage } from './firebaseConfig.js';
-import { ref, getDownloadURL, listAll } from 'firebase/storage';
+// Simple Firebase Test - Run this to validate Firebase setup - temporarily disabled
+// import { storage } from './firebaseConfig.js';
+// import { ref, getDownloadURL, listAll } from 'firebase/storage';
 
 export const testFirebaseConnection = async () => {
+  console.log('Firebase testing temporarily disabled for build');
+  return {
+    success: false,
+    message: 'Firebase temporarily disabled for SDK 52 testing'
+  };
+  
   try {
     console.log('🔥 Testing Firebase Storage connection...');
     
     // Try to access the wedding-photos folder
-    const photosRef = ref(storage, 'wedding-photos/');
+    // const photosRef = ref(storage, 'wedding-photos/');
     
     // This should work even if folder is empty
-    const result = await listAll(photosRef);
+    // const result = await listAll(photosRef);
     
     console.log('✅ Firebase Storage connected successfully!');
     console.log(`📁 Found ${result.items.length} photos in storage`);
